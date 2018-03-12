@@ -13,6 +13,8 @@ Package.onUse(function(api) {
 
   // CLIENT
   api.use([
+    'ecmascript',
+    'react-template-helper',
     'deps',
     'service-configuration',
     'accounts-base',
@@ -34,6 +36,7 @@ Package.onUse(function(api) {
     'client/views/lib/processing.html',
     'client/views/lib/processing.less',
     'client/views/signIn/signIn.html',
+    'client/views/signIn/signIn.js',
     'client/views/signIn/signIn.coffee',
     'client/views/signUp/signUp.html',
     'client/views/signUp/signUp.coffee',
@@ -66,8 +69,11 @@ Package.onUse(function(api) {
     'client/t9n/arabic.coffee'
   ], 'client');
 
+  api.addAssets('client/views/signIn/signIn.jsx', 'client');
+
   // SERVER
   api.use([
+    'react-template-helper',
     'deps',
     'service-configuration',
     'accounts-password',
@@ -105,4 +111,10 @@ Package.onTest(function (api) {
   api.use('riffyn:accounts-entry');
 
   api.addFiles(['tests/route.coffee', 'tests/client.html', 'tests/client.coffee'], 'client');
+})
+
+
+Npm.depends({
+  "@okta/okta-signin-widget": "2.7.0",
+  "react": "16.2.0"
 })
